@@ -127,14 +127,14 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
                         <dd
                             class="mt-2 text-[#9afe2e] bg-black ring ring-sky-600 p-2 grid grid-cols-2 gap-y-3"
                         >
-                            <p>A: <span id="Soil-1">-</span> %</p>
-                            <p>B: <span id="Soil-2">-</span> %</p>
-                            <p>C: <span id="Soil-3">-</span> %</p>
-                            <p>D: <span id="Soil-4">-</span> %</p>
-                            <p>E: <span id="Soil-5">-</span> %</p>
-                            <p>F: <span id="Soil-6">-</span> %</p>
-                            <p>G: <span id="Soil-7">-</span> %</p>
-                            <p>H: <span id="Soil-8">-</span> %</p>
+                            <p>A: <span id="Soil_1">-</span> %</p>
+                            <p>B: <span id="Soil_2">-</span> %</p>
+                            <p>C: <span id="Soil_3">-</span> %</p>
+                            <p>D: <span id="Soil_4">-</span> %</p>
+                            <p>E: <span id="Soil_5">-</span> %</p>
+                            <p>F: <span id="Soil_6">-</span> %</p>
+                            <p>G: <span id="Soil_7">-</span> %</p>
+                            <p>H: <span id="Soil_8">-</span> %</p>
                         </dd>
                     </div>
                 </dl>

@@ -17,6 +17,9 @@ const int NUMBER_OF_SOIL_SENSORS = 8; // MAX 8
 const int MAP_TOP_ANALOG_VALUE = 300; // 100%
 const int MAP_BOTTOM_ANALOG_VALUE = 640; // 0%
 
+unsigned long lastExecutionTime = 0; // Tracks the last execution time
+const unsigned long interval = 3600000; // 1 hour in milliseconds
+
 #define DHTPin D1
 #define DHTTYPE DHT22
 
@@ -34,17 +37,29 @@ void setup() {
 
 // the loop function runs over and over again forever
 void loop() {
-  MDNS.update();
-  server.handleClient();
+  unsigned long currentTime = millis();
 
+  // Check if one hour has passed
+  if(currentTime - lastExecutionTime >= interval){
+    lastExecutionTime = currentTime; // Update the last execution time
+    executeHourlyTask();
+  }
+  
   if(Serial.available()){
     String input = Serial.readString();
     input.trim();
-
     String payload = getApiPayload(input);
-
     sendApiPostRequest(payload);
   }
+
+  MDNS.update();
+  server.handleClient();
+}
+
+void executeHourlyTask(){
+  Serial.println("HOURLY TASKS");
+  String payload = getApiPayload("HOURLY TASKS");
+  sendApiPostRequest(payload);
 }
 
 int getAnalogData(int number){
