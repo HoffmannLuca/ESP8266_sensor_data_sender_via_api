@@ -37,14 +37,9 @@ void setup() {
 
 // the loop function runs over and over again forever
 void loop() {
-  unsigned long currentTime = millis();
+  MDNS.update();
+  server.handleClient();
 
-  // Check if one hour has passed
-  if(currentTime - lastExecutionTime >= interval){
-    lastExecutionTime = currentTime; // Update the last execution time
-    executeHourlyTask();
-  }
-  
   if(Serial.available()){
     String input = Serial.readString();
     input.trim();
@@ -52,8 +47,12 @@ void loop() {
     sendApiPostRequest(payload);
   }
 
-  MDNS.update();
-  server.handleClient();
+  // HOURLY TASKS
+  unsigned long currentTime = millis();
+  if(currentTime - lastExecutionTime >= interval){ // Check if one hour has passed
+    lastExecutionTime = currentTime; // Update the last execution time
+    executeHourlyTask();
+  }  
 }
 
 void executeHourlyTask(){
